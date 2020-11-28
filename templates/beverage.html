@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1 style="text-align: center;">Beverage</h1>
+<section class="section2">
+    <div class="section2box">
+        <box class="flex-container">
+            <box class="box boxbackground" style ="background-image:url('/static/img/tea.jpg');">
+                <a href="{% url 'tea' %}" style="color: white;" >Tea</a>
+            </box>
+            <box class="box boxbackground" style ="background-image:url('/static/img/coffee.jpg');">
+                <a href="{% url 'coffee' %}" style="color: white;" >Coffee</a>
+            </box>
+            <box class="box boxbackground" style ="background-image:url('/static/img/drinks.jpg');">
+                <a href="{% url 'drinks' %}" style="color: white;" >Drinks</a>
+            </box>
+        </box>
+    </div>
+</section>
+{% endblock %}

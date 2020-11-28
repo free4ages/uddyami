@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
+{% block content %}
+<section class="section2">
+	<div class="container">
+	<div class="col-md-6 col-sm-12">
+<form method="POST" action="{% url 'sale_new' %}">
+  {% csrf_token %}
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Name*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.seller_name%}is-invalid{% endif %}" name="seller_name" placeholder="Enter Name">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Company Name(optional)</label>
+	<div class="col-md-8">
+		<input type="text" name="company_name" class="form-control {% if form.errors.company_name%}is-invalid{% endif %}" placeholder="Enter Company Name">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Product Name*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.product_name%}is-invalid{% endif %}" name="product_name" placeholder="Enter Product Name">
+	</div>
+	<div class="col-md-12">
+	<small id="emailHelp" class="form-text text-muted">Product that you want to sell</small>
+	</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Mobile Number*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.mobile %}is-invalid{% endif %}" name="mobile" placeholder="Enter Mobile Number">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">City/Village*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.city%}is-invalid{% endif %}" name="city" placeholder="Enter City">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">State*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.state%}is-invalid{% endif %}" name="state" placeholder="Enter State">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Description(optional)</label>
+	<div class="col-md-8">
+		<textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Description of product" name="description"></textarea>
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+  <div class="form-group form-check">
+    <input type="checkbox" checked="checked" name="whatsapp_active" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label"  for="exampleCheck1">Contact me on Whatsapp</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+	</div>
+	</div>
+	
+</section>
+{%endblock%}

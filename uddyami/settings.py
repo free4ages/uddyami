@@ -34,8 +34,10 @@ INSTALLED_APPS = [
     'product',
     'accounts',
     'member',
+    'saleitem',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.humanize',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -58,7 +60,9 @@ ROOT_URLCONF = 'uddyami.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR,'templates')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,12 +138,14 @@ USE_TZ = True
 
 # MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-# STATICFILES_DIRS = [
+#STATICFILES_DIRS = [
 #     os.path.join(BASE_DIR, 'static'),
 # ]
 
-STATIC_ROOT = '/home/uddyami/.virtualenvs/uddyami/static'
-MEDIA_ROOT = '/home/uddyami/.virtualenvs/uddyami/media'
+#STATIC_ROOT = '/home/uddyami/.virtualenvs/uddyami/static'
+#MEDIA_ROOT = '/home/uddyami/.virtualenvs/uddyami/media'
+STATIC_ROOT = os.path.join(BASE_DIR,'static')
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'

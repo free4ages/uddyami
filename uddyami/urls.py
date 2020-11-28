@@ -24,6 +24,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('',include('product.urls')),
     path('',include("accounts.urls")),
+    path('',include("saleitem.urls")),
 ]
 #  # for handling profile photos
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
