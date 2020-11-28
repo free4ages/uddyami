@@ -201,3 +201,6 @@ ul.topnav li.right {float: right;}
   clear: both;
 }
 
+.grid-card{
+	margin-top: 20px;
+}
