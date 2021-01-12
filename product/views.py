@@ -42,7 +42,7 @@ class MiscellaneousView(TemplateView):
      # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 match = re.search('miscellaneous', str(prod.sub_category))
                 if match:
@@ -64,7 +64,7 @@ class FishingPondView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'fishingpond':
                     mems.append(mem)
@@ -85,7 +85,7 @@ class MakhanaView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'makhana':
                     mems.append(mem)
@@ -106,7 +106,7 @@ class JaggeryView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'jaggery':
                     mems.append(mem)
@@ -127,7 +127,7 @@ class PulsesView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'pulses':
                     mems.append(mem)
@@ -148,7 +148,7 @@ class FoodProcessingView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'food processing':
                     mems.append(mem)
@@ -169,7 +169,7 @@ class MaizeView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'maize':
                     mems.append(mem)
@@ -191,7 +191,7 @@ class MangoView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'mango':
                     mems.append(mem)
@@ -212,7 +212,7 @@ class BananaView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'banana':
                     mems.append(mem)
@@ -233,7 +233,7 @@ class LitchiView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'litchi':
                     mems.append(mem)
@@ -254,7 +254,7 @@ class GuavaView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'guava':
                     mems.append(mem)
@@ -275,7 +275,7 @@ class PapayaView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'papaya':
                     mems.append(mem)
@@ -296,7 +296,7 @@ class TomatoView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'tomato':
                     mems.append(mem)
@@ -317,7 +317,7 @@ class BrinjalView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'brinjal':
                     mems.append(mem)
@@ -338,7 +338,7 @@ class MirchiView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'mirchi':
                     mems.append(mem)
@@ -359,7 +359,7 @@ class CauliflowerView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'cauliflower':
                     mems.append(mem)
@@ -380,7 +380,7 @@ class MilkView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'milk':
                     mems.append(mem)
@@ -401,7 +401,7 @@ class GheeView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'ghee':
                     mems.append(mem)
@@ -422,7 +422,7 @@ class PaneerView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'paneer':
                     mems.append(mem)
@@ -443,7 +443,7 @@ class PedaView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'peda':
                     mems.append(mem)
@@ -464,7 +464,7 @@ class TeaView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'tea':
                     mems.append(mem)
@@ -485,7 +485,7 @@ class CoffeeView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'coffee':
                     mems.append(mem)
@@ -506,7 +506,7 @@ class DrinksView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'drinks':
                     mems.append(mem)
@@ -527,7 +527,7 @@ class BhagalpuriChadarView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'bhagalpurichadar':
                     mems.append(mem)
@@ -548,7 +548,7 @@ class TailorView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'tailor':
                     mems.append(mem)
@@ -570,7 +570,7 @@ class ConstructionView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 match = re.search('Construction', str(prod.category))
                 if match:
@@ -592,7 +592,7 @@ class LoanView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'loan':
                     mems.append(mem)
@@ -613,7 +613,7 @@ class LedLightView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'led':
                     mems.append(mem)
@@ -634,7 +634,7 @@ class RentVehicleView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 match = re.search('rent_vehicle', str(prod.sub_category))
                 if match:
@@ -656,7 +656,7 @@ class ConsultantView(TemplateView):
     # @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         mems = []
-        for mem in Member.objects.all():
+        for mem in Member.objects.exclude(active = 'False'):
             for prod in mem.products.all():
                 if prod.title.lower() == 'consultant':
                     mems.append(mem)

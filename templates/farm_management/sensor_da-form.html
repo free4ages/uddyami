@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
+{% block content %}
+<section class="section2">
+	<div class="container">
+	<div class="col-md-6 col-sm-12">
+<form method="POST" action="{% url 'sensor_da_create' %}">
+  {% csrf_token %}
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Location:</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.location %}is-invalid{% endif %}" name="location" placeholder="Enter location">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">pH*</label>
+	<div class="col-md-8">
+		<input type="text" name="pH" class="form-control {% if form.errors.pH%}is-invalid{% endif %}" placeholder="pH">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Moisture*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.Moisture %}is-invalid{% endif %}" name="Moisture" placeholder="Enter Moisture at location">
+	</div>
+  </div>
+
+   <div class="form-group row">
+    <label class="col-md-4 col-form-label">Humidity</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.Humidity %}is-invalid{% endif %}" name="Humidity" placeholder="Enter Humidity at location">
+	</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Temperature</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.Temperature %}is-invalid{% endif %}" name="Temperature" placeholder="Enter Temperature at location">
+	</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Light Intensity</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.Light %}is-invalid{% endif %}" name="Light" placeholder="Enter Light Intensity at location">
+	</div>
+  </div>
+
+   <div class="form-group row">
+    <label class="col-md-4 col-form-label">Co2_level</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.Co2_level %}is-invalid{% endif %}" name="Co2_level" placeholder="Enter Co2_level at location">
+	</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Wind</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.Wind %}is-invalid{% endif %}" name="Wind" placeholder="Enter Wind Data at location">
+	</div>
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">SunTracking</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.SunTracking %}is-invalid{% endif %}" name="SunTracking" placeholder="Enter SunTracking Data at location">
+	</div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+	</div>
+	</div>
+
+</section>
+{%endblock%}

@@ -25,6 +25,9 @@ urlpatterns = [
     path('',include('product.urls')),
     path('',include("accounts.urls")),
     path('',include("saleitem.urls")),
+    path('',include("jobPortal.urls")),
+    path('',include("farm_management.urls")),
+    path('',include("crop_planning.urls")),
 ]
 #  # for handling profile photos
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

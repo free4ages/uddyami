@@ -38,7 +38,15 @@
   <div class="form-group row">
     <label class="col-md-4 col-form-label">Mobile Number*</label>
 	<div class="col-md-8">
-		<input type="text" class="form-control {% if form.errors.mobile %}is-invalid{% endif %}" name="mobile" placeholder="Enter Mobile Number">
+		<input type="text" class="form-control {% if form.errors.mobile %}is-invalid{% endif %}" name="mobile" placeholder="Enter Mobile Number(10 digits only)">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">WhatsApp Number</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.whatsapp %}is-invalid{% endif %}" name="whatsapp" placeholder="Enter WhatsApp Number(10 digits only)">
 	</div>
 	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
   </div>
@@ -76,6 +84,6 @@
 </form>
 	</div>
 	</div>
-	
+
 </section>
 {%endblock%}

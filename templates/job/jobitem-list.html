@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+{% block css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+<br>
+<a href="{% url 'job_new' %}"><button class="btn btn-primary">Post New Job</button></a>
+<section class="section2">
+	<div class="container">
+		<div class="row">
+		{% for jobitem in jobitems %}
+	<div class="col-sm-3">
+  <div class="card grid-card">
+    <div class="card-body">
+	<h5 class="card-title">{{ jobitem.company_name }}</h5>
+	<p class="card-text">{{ jobitem.job_title }}</p>
+	<p class="card-text">Salary: {{ jobitem.salary }} </p>
+	<!--<button onclick="myFunction()">Details</button>-->
+	<h5>Details:</h5>
+	<div id="myDIV" style="display:block;">
+        <p class="card-text">{{ jobitem.qualification }} </p>
+        <p class="card-text">{{ jobitem.work_hours }} </p>
+        <p class="card-text">{{ jobitem.description }} </p>
+        {% if jobitem.contact_person %}
+            <p class="card-text">Contact Person: {{ jobitem.contact_person }} </p>
+        {% endif %}
+         {% if jobitem.email %}
+        <p class="card-text">Email: {{ jobitem.email }} </p>
+         {% endif %}
+        <p class="card-text">Location: {{ jobitem.location }} </p>
+    </div>
+	  <p class="card-text">Mobile: {% firstof jobitem.mobile 'NA'%}{% if jobitem.whatsapp_active %}
+    <a href="https://wa.me/91{{ jobitem.whatsapp  }} " target="_blank"><button style="margin-left:auto;margin-right:auto;display:inline;" class="btn btn-light">
+        WhatsApp <i class="fa fa-whatsapp"></i></button></a>
+
+	  {% endif %}</p>
+	  <p class="card-text"><small class="text-muted">Added On {{jobitem.date_added|naturaltime}}</small><span class="pull-right badge badge-primary">{{jobitem.city}}</span></p>
+    </div>
+  </div>
+  </div>
+  {% endfor %}
+	</div>
+
+
+		</div>
+	</div>
+</section>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+{% endblock %}

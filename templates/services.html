@@ -7,7 +7,7 @@
     <div class="section2box">
         <box class="flex-container">
             <box class="box boxbackground" style ="background-image:url('/static/img/jobs.jpg');">
-                    <a href="{% url 'jobs' %}" style="color: white;" >Job Search</a>
+                    <a href="{% url 'job_list' %}" style="color: white;" >Job Search</a>
                 </box>
              <box class="box boxbackground" style ="background-image:url('/static/img/construction.jpg');">
                     <a href="{% url 'construction' %}" style="color: white;" > Construction / Civil</a>
@@ -22,12 +22,17 @@
             <box class="box boxbackground" style ="background-image:url('/static/img/tailor_stitch.jpg');">
                 <a href="{% url 'tailor' %}" style="color: white;" >Tailoring</a>
             </box>
-             <box class="box boxbackground" style ="background-image:url('/static/img/miscellaneous.jpg');">
+             <box class="box boxbackground" style ="background-image:url('/static/img/others.jpg');">
                 <a href="{% url 'miscellaneous' %}" style="color: white;" > Others </a>
             </box>
             <box class="box boxbackground" style ="background-image:url('/static/img/consultant.jpg');">
                 <a href="{% url 'consultant' %}" style="color: white;" >Consultants</a>
             </box>
+
+             <box class="box boxbackground" style ="background-image:url('/static/img/farm_manage.jpg');">
+                <a href="{% url 'farms' %}" style="color: white;" >Farm Management</a>
+            </box>
+
     </div>
 </section>
 

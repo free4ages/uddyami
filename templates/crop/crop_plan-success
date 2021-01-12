@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block autorefresh %}
+
+<meta http-equiv = "refresh" content = "3; url = /" />
+{% endblock %}
+{% block content %}
+
+<h1>Crop Plan created<h1>
+{% endblock %}

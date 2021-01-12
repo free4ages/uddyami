@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+{% block css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+.myDiv {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+
+.block {
+display: block;
+width: 100%;
+border: none;
+background-color: #4CAF50;
+color: white;
+padding: 14px 28px;
+font-size: 16px;
+cursor: pointer;
+text-align: center;
+}
+
+.block:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+<br>
+<a href="{% url 'farm_new' %}"><button class="block">Create New Farm</button></a>
+<br>
+{% if user.is_staff %}
+    <a href="{% url 'sensor_da_view' %}"><button  class="block">Crop Monitoring</button></a>
+ {% endif %}
+
+<a href="{% url 'crop_plans' %}"><button  class="block">Crop Planning</button></a>
+<br>
+<a href="{% url 'my_farm_view' %}"><button  class="block">My Farm</button></a>
+<br>
+<h1 style="text-align:center">Farms Connected</h1>
+<section class="section2">
+    <div class="container">
+		<div class="row">
+		{% for farm in farms %}
+	        <div class="col-sm-3">
+                <div class="card grid-card">
+                    {% if farm.image_1 %}
+	                    <img class="card-img-top" src="{{ farm.image_1.url }}" alt="{{ farm.image_1 }}" >
+	                {% else %}
+	                    <img class="card-img-top"  alt="{{ farm.farm }}" >
+	                {% endif %}
+                    <div class="card-body">
+    	                <h5 class="card-title">Farmer: {{farm.farm_owner|title}}</h5>
+                        <!--<button onclick="toggle_visibility("{{ farm.farm }}")";>Details</button>-->
+                        <h6>Details:</h6>
+    	                <div class ="myDiv" "style="display:none;">
+                            <p class="card-text">Address: {{ farm.address }} </p>
+                            <p class="card-text">Notes: {{ farm.notes }} </p>
+                        <!--<a href="{% url 'sensor_da_create' %}"><button class="btn btn-primary">Upload Sensor Data</button></a>-->
+                        <!--<a href="{% url 'location_new' %}"><button class="btn btn-warning">New Point</button></a>-->
+                        </div>
+        	            <p class="card-text"><small class="text-muted">Added On {{farm.date_added}}</small></p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    function toggle_visibility(id) {
+       var e = document.getElementById(id);
+       if(e.style.display == 'block')
+          e.style.display = 'none';
+       else
+          e.style.display = 'block';
+    }
+</script>
+
+
+{% endblock %}

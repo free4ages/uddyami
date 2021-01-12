@@ -90,7 +90,12 @@ class Member(models.Model):
     products = models.ManyToManyField(Product,
                                   verbose_name=_("Product"),
                                   blank=True)
+
+    active = models.BooleanField(default=True)
+    sticky = models.BooleanField(default=False)
+    whatsapp_active = models.BooleanField(default=True)
     objects = InheritanceManager()
+
 
     class Meta:
         verbose_name = _("Member")

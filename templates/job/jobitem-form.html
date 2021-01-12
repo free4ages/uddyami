@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
+{% block content %}
+<section class="section2">
+	<div class="container">
+	<div class="col-md-6 col-sm-12">
+<form method="POST" action="{% url 'job_new' %}">
+  {% csrf_token %}
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Company/Organization Name*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.company_name %}is-invalid{% endif %}" name="company_name" placeholder="Enter Company Name">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+   <div class="form-group row">
+    <label class="col-md-4 col-form-label">Job Title*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.job_title %}is-invalid{% endif %}" name="job_title" placeholder="Enter Job Title">
+	</div>
+	<div class="col-md-12">
+	<small id="emailHelp" class="form-text text-muted">Job Title</small>
+	</div>
+  </div>
+
+   <div class="form-group row">
+    <label class="col-md-4 col-form-label">Salary*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.salary %}is-invalid{% endif %}" name="salary" placeholder="Enter Salary">
+	</div>
+	<div class="col-md-12">
+	<small id="emailHelp" class="form-text text-muted">Salary</small>
+	</div>
+  </div>
+
+    <div class="form-group row">
+        <label class="col-md-4 col-form-label">Qualification*</label>
+    	<div class="col-md-8">
+    		<input type="text" class="form-control {% if form.errors.qualification %}is-invalid{% endif %}" name="qualification" placeholder="Enter Qualification">
+    	</div>
+    	<div class="col-md-12">
+    	<small id="emailHelp" class="form-text text-muted">Qualification</small>
+    	</div>
+    </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Work Hours(optional)</label>
+	<div class="col-md-8">
+		<input type="text" name="work_hours" class="form-control {% if form.errors.work_hours %}is-invalid{% endif %}" placeholder="Enter Work Hours">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+
+
+    <div class="form-group row">
+    <label class="col-md-4 col-form-label">Description(optional)</label>
+	<div class="col-md-8">
+		<textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Description of product" name="description"></textarea>
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Mobile Number*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.mobile %}is-invalid{% endif %}" name="mobile" placeholder="Enter Mobile Number(10 digits only)">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">WhatsApp Number</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.whatsapp %}is-invalid{% endif %}" name="whatsapp" placeholder="Enter WhatsApp Number(10 digits only)">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+   <div class="form-group row">
+    <label class="col-md-4 col-form-label">Location*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.location%}is-invalid{% endif %}" name="location" placeholder="Enter Location">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">City/Village*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.city%}is-invalid{% endif %}" name="city" placeholder="Enter City">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">State*</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.state%}is-invalid{% endif %}" name="state" placeholder="Enter State">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+
+
+
+  <div class="form-group form-check">
+    <input type="checkbox" checked="checked" name="whatsapp_active" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label"  for="exampleCheck1">Contact me on Whatsapp</label>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+	</div>
+	</div>
+
+</section>
+{%endblock%}

@@ -12,9 +12,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'css/about.css' %}">
-	{% block css %}
+{% block css %}
 
-	{% endblock %}
+{% endblock %}
 
 </head>
 
@@ -34,12 +34,13 @@ function googleTranslateElementInit() {
     <p>Connecting Businesses</p>
     <br>
     <a href="https://forms.gle/9FVoXfwKFtCwEZ3x9" target="_blank"><button class="btn btn-dark">Connect</button></a>
+    <br>
 </div>
 
 <ul class="topnav">
   <li><a class="active" href="{% url 'home' %}">Home</a></li>
-  <li><a href="{% url 'home' %}">Products</a></li>
   <li><a href="{% url 'services' %}">Services</a></li>
+  <li><a href="{% url 'job_list' %}">Jobs</a></li>
   <li><a href="#Contact">Contact</a></li>
   <li><a href="{% url 'sales' %}">Buy</a></li>
   {% if not user.is_authenticated %}
@@ -51,10 +52,13 @@ function googleTranslateElementInit() {
   {% endif %}
   <li class="right"><a href="{% url 'about' %}">About</a></li>
   <li class="right"><a href="{% url 'sale_new' %}">Sell</a></li>
+   {% if user.is_staff %}
+    <li class="right"><a href="http://www.uddyami.in/admin/">Admin</a></li>
+   {% endif %}
 
 </ul>
 
-<div>
+<div style="margin-left:10px;">
 {% block content %}
 
 {% endblock %}
@@ -89,8 +93,47 @@ function googleTranslateElementInit() {
 <br>
 <br>
 <br>
+
 <div class="footer">
-    <p>&copyUddyami:All Rights Reserved</p>
+    <style>
+    /* Style all font awesome icons */
+
+    .fa {
+      padding: 20px;
+      font-size: 30px;
+      width: 50px;
+      text-align: center;
+      text-decoration: none;
+      margin: 5px 2px;
+    }
+
+    .fa:hover {
+        opacity: 0.7;
+    }
+
+    .fa-facebook {
+      background: #3B5998;
+      color: white;
+    }
+
+    .fa-twitter {
+      background: #55ACEE;
+      color: white;
+    }
+    .fa-linkedin {
+      background: #007bb5;
+      color: white;
+    }
+
+    .fa-youtube {
+      background: #bb0000;
+      color: white;
+    }
+    </style>
+<a href="https://www.facebook.com/UddyamiKendra/" target="_blank" class="fa fa-facebook"></a>
+<a href="#" class="fa fa-linkedin"></a>
+<a href="#" class="fa fa-youtube"></a>
+<p>&copyUddyami:All Rights Reserved</p>
 </div>
 <script src="{% static 'js/resp.js' %}"></script>
 

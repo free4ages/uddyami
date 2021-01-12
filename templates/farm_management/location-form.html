@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+{% endblock %}
+
+{% block content %}
+<section class="section2">
+	<div class="container">
+	<div class="col-md-6 col-sm-12">
+<form method="POST" action="{% url 'location_new' %}">
+  {% csrf_token %}
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Location</label>
+	<div class="col-md-8">
+		<input type="text" class="form-control {% if form.errors.location %}is-invalid{% endif %}" name="location" placeholder="Enter location">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  <div class="form-group row">
+    <label class="col-md-4 col-form-label">Farm</label>
+	<div class="col-md-8">
+		<input type="text" name="farm" class="form-control {% if form.errors.farm%}is-invalid{% endif %}" placeholder="Farm">
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+
+   <div class="form-group row">
+    <label class="col-md-4 col-form-label">Notes(optional)</label>
+	<div class="col-md-8">
+		<textarea class="form-control" id="exampleFormControlTextarea1" placeholder="Notes about Location" name="notes"></textarea>
+	</div>
+	<!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+	</div>
+	</div>
+
+</section>
+{%endblock%}

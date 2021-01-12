@@ -10,15 +10,15 @@ from django import forms
 from saleitem.models import SaleItem
 
 class SaleItemForm(forms.ModelForm):
-    mobile = forms.CharField(max_length=15)
+    mobile = forms.CharField(max_length=10)
     city = forms.CharField(max_length=50)
     state = forms.CharField(max_length=50)
     class Meta:
         model = SaleItem
-        fields = ['product_name','company_name','seller_name','email','mobile','address','city','state','description','whatsapp_active']
+        fields = ['product_name','company_name','seller_name','email','mobile','whatsapp','address','city','state','description','whatsapp_active']
 
 class SaleItemList(ListView):
-    queryset = SaleItem.objects.order_by('sticky','date_added')
+    queryset = SaleItem.objects.exclude(active = 'False').order_by('sticky','date_added')
     template_name = 'saleitem/saleitem-list.html'
     context_object_name = 'saleitems'
 

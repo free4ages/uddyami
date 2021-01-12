@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     'accounts',
     'member',
     'saleitem',
+    'jobPortal',
+    'farm_management',
+    'crop_planning',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.humanize',
@@ -149,3 +152,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 MEDIA_URL = '/media/'
 STATIC_URL = '/static/'
+
+EMAIL_BACKEND  = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'uddyamienterprizes@gmail.com'
+EMAIL_HOST_PASSWORD = 'uddyami#8691'

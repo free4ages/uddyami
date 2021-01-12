@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+{% block css %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+<br>
+<a href="{% url 'crop_plan_new' %}"><button class="btn btn-primary">Make New Crop Plan</button></a>
+<br>
+
+<h1 style="text-align:center">Crop Plans</h1>
+<section class="section2">
+    <div class="container">
+		<div class="row">
+		{% for crop_plan in crop_plans %}
+	        <div class="col-sm-3">
+                <div class="card grid-card">
+	                <img class="card-img-top"  alt="{{ plan.plan }}" >
+                    <div class="card-body">
+	                <h5 class="card-title">Crop: {{crop_plan.crop|title}}</h5>
+                    <button onclick="myFunction()">Details</button>
+	                <div id="myDIV" style="display:none;">
+                    <p class="card-text">Land Area: {{ crop_plan.area }} </p>
+                    <p class="card-text">Season: {{ crop_plan.season }} </p>
+                    <p class="card-text">Seeding: {{ crop_plan.seeding }} </p>
+                    <p class="card-text">Seeding Date: {{ crop_plan.seeding_date }} </p>
+                    <p class="card-text">Fertigation Plan: {{ crop_plan.fertigation_plan }} </p>
+                    <p class="card-text">Plant Protection Plan: {{ crop_plan.plant_protection_plan }} </p>
+                    <p class="card-text">Weeding Plan: {{ crop_plan.weeding_plan }} </p>
+                    <p class="card-text">Labour Planning: {{ crop_plan.labour_planning }} </p>
+                    <!--<a href="{% url 'sensor_da_create' %}"><button class="btn btn-primary">Upload Sensor Data</button></a>-->
+                    <!--<a href="{% url 'location_new' %}"><button class="btn btn-warning">New Point</button></a>-->
+                </div>
+            </div>
+        </div>
+  </div>
+  {% endfor %}
+</div>
+</section>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
+
+{% endblock %}

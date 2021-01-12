@@ -3,6 +3,15 @@
 {% load humanize %}
 {% block css %}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<style>
+#myDIV {
+  width: 100%;
+  padding: 50px 0;
+  text-align: center;
+  background-color: lightblue;
+  margin-top: 20px;
+}
+</style>
 {% endblock %}
 
 
@@ -14,15 +23,25 @@
 		{% for saleitem in saleitems %}
 	<div class="col-sm-3">
   <div class="card grid-card">
-	  <img class="card-img-top" src="/static/img/food.jpg" alt="Card image cap">
+       {% if saleitem.product_image %}
+	  <img class="card-img-top" src="{{ saleitem.product_image.url }}" alt="{{ saleitem.seller_name }}" >
+	   {% else %}
+	    <img class="card-img-top"  alt="{{ saleitem.seller_name }}" >
+	   {% endif %}
     <div class="card-body">
 	<h5 class="card-title">{{saleitem.product_name|title}}</h5>
+	<!--<button onclick="myFunction()">Details</button>-->
+	<h6>Details:</h6>
+	<div id="myDIV" style="display:block;">
+        <p class="card-text">Description: {{ saleitem.description }} </p>
+        <p class="card-text">{{ saleitem.address }} </p>
+    </div>
 	<p class="card-text">Seller: {% firstof saleitem.seller_name 'NA'%}</p>
 	  <p class="card-text">Mobile: {% firstof saleitem.mobile 'NA'%}{% if saleitem.whatsapp_active %}
-    <a href="https://wa.me/918691908569 " target="_blank"><button style="margin-left:auto;margin-right:auto;display:inline;" class="btn btn-light">
+    <a href="https://wa.me/91{{ saleitem.whatsapp  }} " target="_blank"><button style="margin-left:auto;margin-right:auto;display:inline;" class="btn btn-light">
         WhatsApp <i class="fa fa-whatsapp"></i></button></a>
-	  
-	  {% endif%}</p>
+
+	  {% endif %}</p>
 	  <p class="card-text"><small class="text-muted">Added On {{saleitem.date_added|naturaltime}}</small><span class="pull-right badge badge-primary">{{saleitem.city}}</span></p>
     </div>
   </div>
@@ -34,5 +53,16 @@
 		</div>
 	</div>
 </section>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myDIV");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+}
+</script>
 
 {% endblock %}

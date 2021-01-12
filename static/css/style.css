@@ -102,16 +102,16 @@ ul.topnav li.right {float: right;}
   align-items: center;
   border: 5px solid #eee7e7;
   border-radius: 50px;
-  height: 240px;
+  height: 100px;
   margin: 10px 10px 10px 10px;
-  width: 250px;
+  width: 120px;
   color: rgb(248, 239, 239);
-  font-size: 38px;
+  font-size: 16px;
   cursor: pointer;
 }
 
 .box:hover{
-  font-size: 43px;
+  font-size: 24px;
   color: papayawhip;
   animation-delay: 0.5s;
 
@@ -203,4 +203,8 @@ ul.topnav li.right {float: right;}
 
 .grid-card{
 	margin-top: 20px;
+}
+
+
+
 }
