@@ -20,6 +20,7 @@ class CropBudgetView(View):
     template_name = 'crop/crop_budget-form.html'
     form_class = CropBudgetForm
 
+    @method_decorator(login_required)
     def get(self,request,*args,**kwargs):
         instance = None
         results = []
