@@ -40,21 +40,21 @@ class CropBudget(models.Model):
 
     #Sales and production data
     num_plants_acre = models.IntegerField(default=0)
-    prod_per_plant_min = models.IntegerField(default=0,help_text="in Kgs")
-    prod_per_plant_max = models.IntegerField(default=0,help_text="in Kgs")
+    prod_per_plant_min = models.FloatField(default=0,help_text="in Kgs")
+    prod_per_plant_max = models.FloatField(default=0,help_text="in Kgs")
 
-    prod_per_acre_min = models.IntegerField(default=0,help_text="in Kgs")
-    prod_per_acre_max = models.IntegerField(default=0,help_text="in Kgs")
+    prod_per_acre_min = models.FloatField(default=0,help_text="in Kgs")
+    prod_per_acre_max = models.FloatField(default=0,help_text="in Kgs")
 
 
-    sell_price_min = models.IntegerField(default=0)
-    sell_price_max = models.IntegerField(default=0)
+    sell_price_min = models.FloatField(default=0)
+    sell_price_max = models.FloatField(default=0)
 
     crop_duration = models.IntegerField(default=6,help_text="Duration in month")
 
     # Per Plant Cost
-    seed_cost = models.IntegerField(default=0)
-    per_plant_cost = models.IntegerField(default=0)
+    seed_cost = models.FloatField(default=0)
+    per_plant_cost = models.FloatField(default=0)
 
     vermi_compost_cost = models.IntegerField(default=0)
     plantation_cost = models.IntegerField(default=0)

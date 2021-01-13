@@ -74,7 +74,7 @@ class CropBudgetCalc(object):
         
     def estCropCoverCost(self):
         if self.crop_cover_check:
-            crop_cover_cost = self.crop_cover + self.labour_crop_cover + self.wire_cost* self.crop_duration/self.wire_recov_dur
+            crop_cover_cost = self.crop_cover + self.labour_crop_cover + self.wire_cost* self.crop_duration/self.wire_recov_duration
         else:
             crop_cover_cost = 0.
         return crop_cover_cost

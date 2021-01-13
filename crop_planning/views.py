@@ -23,6 +23,7 @@ class CropBudgetView(View):
     def get(self,request,*args,**kwargs):
         instance = None
         results = []
+        form = None
         crops = CropBudget.objects.order_by('sticky')
         if 'results' in kwargs:
             results = kwargs['results']
@@ -37,7 +38,6 @@ class CropBudgetView(View):
         if form.is_valid():
             kwargs['form_data'] = form.cleaned_data
             kwargs['results'] = CropBudgetCalc(**kwargs['form_data']).profitLossData()
-            print(kwargs['form_data'])
         return self.get(request,*args,**kwargs)
 
 class CropPlanForm(forms.ModelForm):

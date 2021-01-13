@@ -140,7 +140,7 @@
                         <input class="form-control" name="seed_cost" value="{{form.seed_cost}}">
 					</div>
                     
-                    <div class="col {% if not form.seedling_check %}d-none{% endif %}">
+                    <div class="col {% if not form.seedling_check or not form.seed_check%}d-none{% endif %}">
 						<p class="text-center mt-2">Or</p>
 					</div>
 					<div class="col {% if not form.seedling_check %}d-none{% endif %}">
