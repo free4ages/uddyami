@@ -17,7 +17,7 @@ class CropBudget(models.Model):
     """
     crop_name = models.CharField(max_length=30,help_text="Name of Crop")
     crop_slug = models.SlugField(max_length=30)
-    crop_image = models.ImageField(upload_to='media/%Y/%m/%d ',blank=True,null=True,verbose_name=_("Crop Image"),validators=[validate_image])
+    crop_image = models.ImageField(upload_to='%Y/%m/%d',blank=True,null=True,verbose_name=_("Crop Image"),validators=[validate_image])
     sticky = models.BooleanField(default=False)
 
     #Basic Checking

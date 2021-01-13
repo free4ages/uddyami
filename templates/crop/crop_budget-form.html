@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block css %}
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -15,21 +16,45 @@
         }
         window.location.href = "{% url 'crop_budget' %}"+selected+'/';
     });
+    $('.crop-check').on('change',function(){
+        console.log('changed')
+        let $this=$(this);
+        let el_class = $this.data('target')
+        console.log(el_class)
+        if($this.is(':checked')){
+            $('.'+el_class).removeClass('d-none');
+        }
+        else{
+            $('.'+el_class).addClass('d-none');
+        }
+    })
 </script>
 {% endblock %}
 
 {% block content %}
 <section class="section2">
 	<div class="container">
-        <div class="form-group">
-            <label>Select Crop</label>
-            <select class="form-control" id="crop-select" placeholder="Select Crop">
-                <option value="">Select Crop</option>
-                {% for crop in crops%}
-                    <option {% if form.crop_slug == crop.crop_slug %}selected{% endif%} value="{{crop.crop_slug}}">{{crop.crop_name}}</option>
-                {% endfor %}
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Select Crop</label>
+                    <select class="form-control" id="crop-select" placeholder="Select Crop">
+                        <option value="">Select Crop</option>
+                        {% for crop in crops%}
+                            <option {% if form.crop_slug == crop.crop_slug %}selected{% endif%} value="{{crop.crop_slug}}">{{crop.crop_name}}</option>
+                        {% endfor %}
 
-            </select>
+                    </select>
+                </div>
+            </div>
+            {% if form.crop_image%}
+            <div class="col-sm-6">
+                <div class="text-center">
+                    <img height=100 width=100 src="{% get_media_prefix%}{{form.crop_image}}" alt="..." class="img-thumbnail">
+
+                </div>
+            </div>
+            {% endif %}
         </div>
         {% if results %}
         <div class="container">
@@ -62,6 +87,95 @@
 
         {% if form.crop_slug %}
         <form method="POST" action="{%url 'crop_budget_detail' form.crop_slug %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.seed_check %}checked{% endif %} class="form-check-input crop-check" name="seed_check" data-target="seed-check" >
+                        <label class="form-check-label" for="exampleCheck1">Seed</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.seedling_check %}checked{% endif %} class="form-check-input crop-check" data-target="seedling-check" name="seedling_check" >
+                        <label class="form-check-label" for="exampleCheck1">Seedling</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.mulch_check %}checked{% endif %} class="form-check-input crop-check" data-target="mulch-check" name="mulch_check" >
+                        <label class="form-check-label" for="exampleCheck1">Mulch</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.alan_check %}checked{% endif %} class="form-check-input crop-check" name="alan_check" data-target="alan-check" >
+                        <label class="form-check-label" for="exampleCheck1">Alan</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.stake_check %}checked{% endif %} class="form-check-input crop-check" name="stake_check" data-target="stake-check" >
+                        <label class="form-check-label" for="exampleCheck1">Stake</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.crop_cover_check %}checked{% endif %} class="form-check-input crop-check" name="crop_cover_check" data-target="crop-cover-check" >
+                        <label class="form-check-label" for="exampleCheck1">Crop Cover</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.gobar_check %}checked{% endif %} class="form-check-input crop-check" name="gobar_check" data-target="gobar-check" >
+                        <label class="form-check-label" for="exampleCheck1">Gobar</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.vermi_check %}checked{% endif %} class="form-check-input crop-check" name="vermi_check" data-target="vermi-check" >
+                        <label class="form-check-label" for="exampleCheck1">Vermi Compost</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.fertiliz_bas_check %}checked{% endif %} class="form-check-input crop-check" name="fertiliz_bas_check" data-target="fertilizer-bas-check" >
+                        <label class="form-check-label" for="exampleCheck1">Fertilizer BAS</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.fertiliz_ws_check %}checked{% endif %} class="form-check-input crop-check" name="fertiliz_ws_check" data-target="fertilizer-ws-check" >
+                        <label class="form-check-label" for="exampleCheck1">Fertilizer WS</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.marketing_check %}checked{% endif %} class="form-check-input crop-check" name="marketing_check" data-target="marketing-check" >
+                        <label class="form-check-label" for="exampleCheck1">Marketing</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.management_check %}checked{% endif %} class="form-check-input crop-check" name="management_check" data-target="management-check" >
+                        <label class="form-check-label" for="exampleCheck1">Management</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.lease_check %}checked{% endif %} class="form-check-input crop-check" name="lease_check" data-target="lease-check" >
+                        <label class="form-check-label" for="exampleCheck1">Lease</label>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.miscell_check %}checked{% endif %} class="form-check-input crop-check" name="miscell_check" data-target="miscell-check" >
+                        <label class="form-check-label" for="exampleCheck1">Miscellaneous</label>
+                    </div>
+                </div>
+
+            </div>
+        </div>
 		<div class="accordion" id="accordionExample">
 		  <div class="card">
 			<div class="card-header" id="headingOne">
@@ -135,7 +249,7 @@
 			  <div class="card-body">
 			  	<div class="form-group row">
                     
-                    <div class="col {% if not form.seed_check %}d-none{% endif %}">
+                    <div class="col seed-check {% if not form.seed_check %}d-none{% endif %}">
 						<label>Seed Cost</label>
                         <input class="form-control" name="seed_cost" value="{{form.seed_cost}}">
 					</div>
@@ -143,23 +257,23 @@
                     <div class="col {% if not form.seedling_check or not form.seed_check%}d-none{% endif %}">
 						<p class="text-center mt-2">Or</p>
 					</div>
-					<div class="col {% if not form.seedling_check %}d-none{% endif %}">
+					<div class="col seedling-check {% if not form.seedling_check %}d-none{% endif %}">
 						<label>Plant Cost</label>
                         <input class="form-control" name="per_plant_cost" value="{{form.per_plant_cost}}">
 					</div>
 				</div>
-                <div class="form-group row {% if not form.vermi_check%}d-none{% endif%}">
+                <div class="form-group row vermi-check {% if not form.vermi_check%}d-none{% endif%}">
 					<div class="col">
 						<label>Vermi Compost</label>
                         <input class="form-control" name="vermi_compost_cost" value="{{form.vermi_compost_cost}}">
 					</div>
 				</div>
 			  	<div class="form-group row">
-                    <div class="col {%if not form.fertiliz_bas_check%}d-none{% endif%}">
+                    <div class="col fertilizer-bas-check {%if not form.fertiliz_bas_check%}d-none{% endif%}">
 						<label>Fertilizer Basal Dose</label>
                         <input class="form-control" name="fertilizer_bas_cost" value="{{form.fertilizer_bas_cost}}">
 					</div>
-                    <div class="col {% if not form.fertiliz_ws_check%}d-none{% endif%}">
+                    <div class="col fertilizer-ws-check {% if not form.fertiliz_ws_check%}d-none{% endif%}">
 						<label>Fertilizer Water Soluble</label>
                         <input class="form-control" name="fertilizer_ws_cost" value="{{form.fertilizer_ws_cost}}">
 					</div>
@@ -185,7 +299,7 @@
 
 			<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
 			  <div class="card-body">
-                  <div class="form-group row {% if not form.mulch_check%}d-none{%endif%}">
+                  <div class="form-group row mulch-check {% if not form.mulch_check%}d-none{%endif%}">
 					<div class="col">
 						<label>Mulch</label>
                         <input class="form-control" name="mulch_cost" value="{{form.mulch_cost}}">
@@ -195,20 +309,20 @@
                         <input class="form-control" name="mulch_labour_cost" value="{{form.mulch_labour_cost}}">
 					</div>
 				</div>
-                <div class="form-group row {%if form.mulch_check%}d-none{% endif %}">
+                <div class="form-group row mulch-check {%if form.mulch_check%}d-none{% endif %}">
 					<div class="col">
 						<label>Weeding Cost</label>
                         <input class="form-control" name="weeding_cost" value="{{form.weeding_cost}}">
 					</div>
 				</div>
-                <div class="form-group row {% if not form.alan_check%}d-none{% endif %}">
+                <div class="form-group row alan-check {% if not form.alan_check%}d-none{% endif %}">
 					<div class="col">
 						<label>Alan</label>
                         <input class="form-control" name="alan_cost" value="{{form.alan_cost}}">
 					</div>
 				</div>
 
-                <div class="form-group row {% if not form.stake_check%}d-none{% endif %}">
+                <div class="form-group row stake-check {% if not form.stake_check%}d-none{% endif %}">
 					<div class="col">
 						<label>Wire Stake</label>
                         <input class="form-control" name="wire_stake" value="{{form.wire_stake}}">
@@ -223,7 +337,7 @@
 					</div>
 				</div>
 				<hr>
-                <div class="form-group row {% if not form.crop_cover_check%}d-none{% endif %}">
+                <div class="form-group row crop-cover-check {% if not form.crop_cover_check%}d-none{% endif %}">
 					<div class="col">
 						<label>Wire</label>
                         <input class="form-control" name="wire_cost" value="{{form.wire_cost}}">
@@ -233,7 +347,7 @@
                         <input class="form-control" name="crop_cover" value="{{form.crop_cover}}">
 					</div>
 				</div>
-                <div class="form-group row {% if not form.crop_cover_check%}d-none{% endif %}">
+                <div class="form-group row crop-cover-check {% if not form.crop_cover_check%}d-none{% endif %}">
 					<div class="col">
 						<label>Crop Cover Labour</label>
                         <input class="form-control" name="labour_crop_cover" value="{{form.labour_crop_cover}}">
@@ -258,7 +372,7 @@
 
 			<div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
 			  <div class="card-body">
-                <div class="form-group row {% if not form.gobar_check%}d-none{% endif %}">
+                <div class="form-group row gobar-check {% if not form.gobar_check%}d-none{% endif %}">
 					<div class="col">
 						<label>Gobar (Yearly)</label>
                         <input class="form-control" name="gobar_cost" value="{{form.gobar_cost}}">
@@ -282,13 +396,13 @@
                         <input class="form-control" name="plantation_cost" value="{{form.plantation_cost}}">
 					</div>
 				</div>
-			  	<div class="form-group row">
+                <div class="form-group row marketing-check {% if not form.marketing_check%}d-none{% endif %}" >
 					<div class="col">
 						<label>Marketing And Harvesting</label>
                         <input class="form-control" name="marketing_and_harvesting_cost" value="{{form.marketing_and_harvesting_cost}}">
 					</div>
 				</div>
-                <div class="form-group row {%if not form.lease_check%}d-none{% endif %}">
+                <div class="form-group row lease-check {%if not form.lease_check%}d-none{% endif %}">
 					<div class="col">
 						<label>Land Lease</label>
                         <input class="form-control" name="land_lease_cost" value="{{form.land_lease_cost}}">
@@ -300,13 +414,13 @@
                         <input class="form-control" name="plant_guarding_maintenance_cost" value="{{form.plant_guarding_maintenance_cost}}">
 					</div>
 				</div>
-                <div class="form-group row {% if not form.management_check%}d-none{% endif %}">
+                <div class="form-group row management-check {% if not form.management_check%}d-none{% endif %}">
 					<div class="col">
 						<label>Management Cost</label>
                         <input class="form-control" name="management_cost" value="{{form.management_cost}}">
 					</div>
 				</div>
-                <div class="form-group row {% if not form.miscell_check%}d-none{% endif %}">
+                <div class="form-group row miscell-check {% if not form.miscell_check%}d-none{% endif %}">
 					<div class="col">
 						<label>Miscellaneous Cost</label>
                         <input class="form-control" name="miscell_cost" value="{{form.miscell_cost}}">
@@ -319,7 +433,7 @@
 		</div>
 		<div class="row">
             <div class="col offset-sm-4">
-                <input type="hidden" name="seed_check" value="{{form.seed_check}}">
+                <!--<input type="hidden" name="seed_check" value="{{form.seed_check}}">
                 <input type="hidden" name="seedling_check" value="{{form.seedling_check}}">
                 <input type="hidden" name="mulch_check" value="{{form.mulch_check}}">
                 <input type="hidden" name="alan_check" value="{{form.alan_check}}">
@@ -332,9 +446,10 @@
                 <input type="hidden" name="marketing_check" value="{{form.marketing_check}}">
                 <input type="hidden" name="management_check" value="{{form.management_check}}">
                 <input type="hidden" name="lease_check" value="{{form.lease_check}}">
-                <input type="hidden" name="miscell_check" value="{{form.miscell_check}}">
+                <input type="hidden" name="miscell_check" value="{{form.miscell_check}}">-->
                 <input type="hidden" name="crop_name" value="{{form.crop_name}}">
                 <input type="hidden" name="crop_slug" value="{{form.crop_slug}}">
+                <input type="hidden" name="crop_image" value="{{form.crop_image}}">
                 {%csrf_token%}
                 <button type="submit" class="btn btn-primary">Calculate</button>
             </div>
