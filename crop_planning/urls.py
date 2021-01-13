@@ -4,9 +4,17 @@ try:
 except ImportError:
     from django.urls import re_path as url
 
-from crop_planning.views import CropPlanCreate,CropPlanView,CropPlanSuccess
+from crop_planning.views import CropPlanCreate,CropPlanView,CropPlanSuccess,CropBudgetView
 
 urlpatterns = [
+
+    url(r'^crop_budget/$',
+    view=CropBudgetView.as_view(),
+    name='crop_budget'),
+
+    path(r'crop_budget/<slug:crop_slug>/',
+    view=CropBudgetView.as_view(),
+    name='crop_budget_detail'),
 
     url(r'^crop_plan/$',
     view=CropPlanView.as_view(),

@@ -7,8 +7,38 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic.base import TemplateView
 # Create your views here.
 from django import forms
+from .cropBudgetCalc import CropBudgetCalc
 
-from crop_planning.models import CropPlan
+from crop_planning.models import CropPlan,CropBudget
+
+class CropBudgetForm(forms.ModelForm):
+    class Meta:
+        model=CropBudget
+        fields = "__all__"
+
+class CropBudgetView(View):
+    template_name = 'crop/crop_budget-form.html'
+    form_class = CropBudgetForm
+
+    def get(self,request,*args,**kwargs):
+        instance = None
+        results = []
+        crops = CropBudget.objects.order_by('sticky')
+        if 'results' in kwargs:
+            results = kwargs['results']
+        if 'form_data' in kwargs:
+            form = kwargs['form_data']
+        elif 'crop_slug' in kwargs:
+            form = CropBudget.objects.get(crop_slug=kwargs['crop_slug'])
+        return render(request,self.template_name,{'form':form,'crops':crops,'results':results})
+
+    def post(self,request,*args,**kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            kwargs['form_data'] = form.cleaned_data
+            kwargs['results'] = CropBudgetCalc(**kwargs['form_data']).profitLossData()
+            print(kwargs['form_data'])
+        return self.get(request,*args,**kwargs)
 
 class CropPlanForm(forms.ModelForm):
     class Meta:
