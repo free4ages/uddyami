@@ -34,6 +34,7 @@
 {% block content %}
 <section class="section2">
 	<div class="container">
+	    <h2 style="text-align:center;color:blue;">Crop Budget Per Acre</h2>
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
@@ -88,6 +89,7 @@
         {% if form.crop_slug %}
         <form method="POST" action="{%url 'crop_budget_detail' form.crop_slug %}">
         <div class="container">
+            <p style="color:blue;">Choose Crop Inputs</p>
             <div class="row">
                 <div class="col-sm-3">
                     <div class="form-group form-check">
@@ -99,6 +101,12 @@
                     <div class="form-group form-check">
                         <input type="checkbox" {% if form.seedling_check %}checked{% endif %} class="form-check-input crop-check" data-target="seedling-check" name="seedling_check" >
                         <label class="form-check-label" for="exampleCheck1">Seedling</label>
+                    </div>
+                </div>
+                  <div class="col-sm-3">
+                    <div class="form-group form-check">
+                        <input type="checkbox" {% if form.prod_per_plant_av %}checked{% endif %} class="form-check-input crop-check" data-target="prod_per_plant_av" name="prod_per_plant_av" >
+                        <label class="form-check-label" for="exampleCheck1">Production Per Plant ?</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -116,7 +124,7 @@
                 <div class="col-sm-3">
                     <div class="form-group form-check">
                         <input type="checkbox" {% if form.stake_check %}checked{% endif %} class="form-check-input crop-check" name="stake_check" data-target="stake-check" >
-                        <label class="form-check-label" for="exampleCheck1">Stake</label>
+                        <label class="form-check-label" for="exampleCheck1">Staking</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -128,7 +136,7 @@
                 <div class="col-sm-3">
                     <div class="form-group form-check">
                         <input type="checkbox" {% if form.gobar_check %}checked{% endif %} class="form-check-input crop-check" name="gobar_check" data-target="gobar-check" >
-                        <label class="form-check-label" for="exampleCheck1">Gobar</label>
+                        <label class="form-check-label" for="exampleCheck1">Gobar/Cow Dung</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -140,13 +148,13 @@
                 <div class="col-sm-3">
                     <div class="form-group form-check">
                         <input type="checkbox" {% if form.fertiliz_bas_check %}checked{% endif %} class="form-check-input crop-check" name="fertiliz_bas_check" data-target="fertilizer-bas-check" >
-                        <label class="form-check-label" for="exampleCheck1">Fertilizer BAS</label>
+                        <label class="form-check-label" for="exampleCheck1">Fertilizer(BASAL DOSE)</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
                     <div class="form-group form-check">
                         <input type="checkbox" {% if form.fertiliz_ws_check %}checked{% endif %} class="form-check-input crop-check" name="fertiliz_ws_check" data-target="fertilizer-ws-check" >
-                        <label class="form-check-label" for="exampleCheck1">Fertilizer WS</label>
+                        <label class="form-check-label" for="exampleCheck1">Fertilizer(Water Soluble)</label>
                     </div>
                 </div>
                 <div class="col-sm-3">
@@ -202,33 +210,33 @@
 				</div>
 			  	<div class="form-group row">
 					<div class="col">
-						<label>Minimum Selling Price</label>
+						<label>Minimum Selling Price(INR)</label>
 						<input class="form-control" name="sell_price_min" value="{{form.sell_price_min}}">
 					</div>
 					<div class="col">
-						<label>Maximum Selling Price</label>
+						<label>Maximum Selling Price(INR)</label>
                         <input class="form-control" name="sell_price_max" value="{{form.sell_price_max}}">
 					</div>
 				</div>
 				<hr>
 			  	<div class="form-group row">
 					<div class="col">
-						<label>Minimum Production Per Plant</label>
+						<label>Minimum Production Per Plant(Kgs.)</label>
                         <input class="form-control" name="prod_per_plant_min" value="{{form.prod_per_plant_min}}">
 					</div>
 					<div class="col">
-						<label>Maximum Production Per Plant</label>
+						<label>Maximum Production Per Plant(Kgs.)</label>
                         <input class="form-control" name="prod_per_plant_max" value="{{form.prod_per_plant_max}}">
 					</div>
 				</div>
 				<p class="text-center">or</p>
 			  	<div class="form-group row">
 					<div class="col">
-						<label>Minimum Production Per Acre</label>
+						<label>Minimum Production Per Acre(Kgs.)</label>
                         <input class="form-control" name="prod_per_acre_min" value="{{form.prod_per_acre_min}}">
 					</div>
 					<div class="col">
-						<label>Maximum Production Per Acre</label>
+						<label>Maximum Production Per Acre(Kgs.)</label>
                         <input class="form-control" name="prod_per_acre_max" value="{{form.prod_per_acre_max}}">
 					</div>
 				</div>
@@ -240,7 +248,7 @@
 			<div class="card-header" id="headingOne">
 			  <h2 class="mb-0">
 				<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-				  Raw Materials Cost
+				  Crop Inputs Cost
 				</button>
 			  </h2>
 			</div>
@@ -248,39 +256,39 @@
 			<div id="collapseTwo" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
 			  <div class="card-body">
 			  	<div class="form-group row">
-                    
+
                     <div class="col seed-check {% if not form.seed_check %}d-none{% endif %}">
-						<label>Seed Cost</label>
+						<label>Seed Cost per Acre(INR)</label>
                         <input class="form-control" name="seed_cost" value="{{form.seed_cost}}">
 					</div>
-                    
+
                     <div class="col {% if not form.seedling_check or not form.seed_check%}d-none{% endif %}">
 						<p class="text-center mt-2">Or</p>
 					</div>
 					<div class="col seedling-check {% if not form.seedling_check %}d-none{% endif %}">
-						<label>Plant Cost</label>
+						<label>Per Plant Cost(INR)</label>
                         <input class="form-control" name="per_plant_cost" value="{{form.per_plant_cost}}">
 					</div>
 				</div>
                 <div class="form-group row vermi-check {% if not form.vermi_check%}d-none{% endif%}">
 					<div class="col">
-						<label>Vermi Compost</label>
+						<label>Vermi Compost(INR)</label>
                         <input class="form-control" name="vermi_compost_cost" value="{{form.vermi_compost_cost}}">
 					</div>
 				</div>
 			  	<div class="form-group row">
                     <div class="col fertilizer-bas-check {%if not form.fertiliz_bas_check%}d-none{% endif%}">
-						<label>Fertilizer Basal Dose</label>
+						<label>Fertilizer Basal Dose(INR)</label>
                         <input class="form-control" name="fertilizer_bas_cost" value="{{form.fertilizer_bas_cost}}">
 					</div>
                     <div class="col fertilizer-ws-check {% if not form.fertiliz_ws_check%}d-none{% endif%}">
-						<label>Fertilizer Water Soluble</label>
+						<label>Fertilizer Water Soluble(INR)</label>
                         <input class="form-control" name="fertilizer_ws_cost" value="{{form.fertilizer_ws_cost}}">
 					</div>
 				</div>
 			  	<div class="form-group row">
 					<div class="col">
-						<label>Pesticide</label>
+						<label>Pesticide(INR)</label>
                         <input class="form-control" name="pesticide_cost" value="{{form.pesticide_cost}}">
 					</div>
 				</div>
@@ -292,7 +300,7 @@
 			<div class="card-header" id="headingThree">
 			  <h2 class="mb-0">
 				<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-				  Support Material Cost
+				  Support Material Costs
 				</button>
 			  </h2>
 			</div>
@@ -301,59 +309,59 @@
 			  <div class="card-body">
                   <div class="form-group row mulch-check {% if not form.mulch_check%}d-none{%endif%}">
 					<div class="col">
-						<label>Mulch</label>
+						<label>Mulch Cost(INR)</label>
                         <input class="form-control" name="mulch_cost" value="{{form.mulch_cost}}">
 					</div>
 					<div class="col">
-						<label>Mulch Labour</label>
+						<label>Mulch Labour Cost(INR)</label>
                         <input class="form-control" name="mulch_labour_cost" value="{{form.mulch_labour_cost}}">
 					</div>
 				</div>
                 <div class="form-group row mulch-check {%if form.mulch_check%}d-none{% endif %}">
 					<div class="col">
-						<label>Weeding Cost</label>
+						<label>Weeding Cost(INR)</label>
                         <input class="form-control" name="weeding_cost" value="{{form.weeding_cost}}">
 					</div>
 				</div>
                 <div class="form-group row alan-check {% if not form.alan_check%}d-none{% endif %}">
 					<div class="col">
-						<label>Alan</label>
+						<label>Alan Cost(INR)</label>
                         <input class="form-control" name="alan_cost" value="{{form.alan_cost}}">
 					</div>
 				</div>
 
                 <div class="form-group row stake-check {% if not form.stake_check%}d-none{% endif %}">
 					<div class="col">
-						<label>Wire Stake</label>
+						<label>Wire Stake Cost(INR)</label>
                         <input class="form-control" name="wire_stake" value="{{form.wire_stake}}">
 					</div>
 					<div class="col">
-						<label>Wire Thin Tent</label>
+						<label>Wire Thin Nylon Cost(INR)</label>
                         <input class="form-control" name="wire_thin_tant" value="{{form.wire_thin_tant}}">
 					</div>
 					<div class="col">
-						<label>Stake Labour</label>
+						<label>Stake Labour Cost(INR)</label>
                         <input class="form-control" name="stake_labour_cost" value="{{form.stake_labour_cost}}">
 					</div>
 				</div>
 				<hr>
                 <div class="form-group row crop-cover-check {% if not form.crop_cover_check%}d-none{% endif %}">
 					<div class="col">
-						<label>Wire</label>
+						<label>Wire Cost(INR)</label>
                         <input class="form-control" name="wire_cost" value="{{form.wire_cost}}">
 					</div>
 					<div class="col">
-						<label>Crop Cover</label>
+						<label>Crop Cover Cost(INR)</label>
                         <input class="form-control" name="crop_cover" value="{{form.crop_cover}}">
 					</div>
 				</div>
                 <div class="form-group row crop-cover-check {% if not form.crop_cover_check%}d-none{% endif %}">
 					<div class="col">
-						<label>Crop Cover Labour</label>
+						<label>Crop Cover Labour Cost(INR)</label>
                         <input class="form-control" name="labour_crop_cover" value="{{form.labour_crop_cover}}">
 					</div>
 					<div class="col">
-						<label>Wire Duration (in months)</label>
+						<label>Wire Durability (in months)</label>
                         <input class="form-control" name="wire_recov_duration" value="{{form.wire_recov_duration}}">
 					</div>
 				</div>
@@ -374,49 +382,49 @@
 			  <div class="card-body">
                 <div class="form-group row gobar-check {% if not form.gobar_check%}d-none{% endif %}">
 					<div class="col">
-						<label>Gobar (Yearly)</label>
+						<label>Gobar (Yearly INR)</label>
                         <input class="form-control" name="gobar_cost" value="{{form.gobar_cost}}">
 					</div>
 				</div>
 			  	<div class="form-group row">
 					<div class="col">
-						<label>Ploughing Bed</label>
+						<label>Ploughing(Bed Preparation(Yearly INR))</label>
                         <input class="form-control" name="ploughing_bed_cost" value="{{form.ploughing_bed_cost}}">
 					</div>
 				</div>
 			  	<div class="form-group row">
 					<div class="col">
-						<label>Irrigation</label>
+						<label>Irrigation(INR)</label>
                         <input class="form-control" name="irrigation_cost" value="{{form.irrigation_cost}}">
 					</div>
 				</div>
 			  	<div class="form-group row">
 					<div class="col">
-						<label>Plantation</label>
+						<label>Plantation(INR)</label>
                         <input class="form-control" name="plantation_cost" value="{{form.plantation_cost}}">
 					</div>
 				</div>
                 <div class="form-group row marketing-check {% if not form.marketing_check%}d-none{% endif %}" >
 					<div class="col">
-						<label>Marketing And Harvesting</label>
+						<label>Total Marketing And Harvesting(INR)</label>
                         <input class="form-control" name="marketing_and_harvesting_cost" value="{{form.marketing_and_harvesting_cost}}">
 					</div>
 				</div>
                 <div class="form-group row lease-check {%if not form.lease_check%}d-none{% endif %}">
 					<div class="col">
-						<label>Land Lease</label>
+						<label>Land Lease(Yearly INR)</label>
                         <input class="form-control" name="land_lease_cost" value="{{form.land_lease_cost}}">
 					</div>
 				</div>
 			  	<div class="form-group row">
 					<div class="col">
-						<label>Plant Guarding & Maintenance</label>
+						<label>Plant Guarding & Maintenance(Monthly in INR)</label>
                         <input class="form-control" name="plant_guarding_maintenance_cost" value="{{form.plant_guarding_maintenance_cost}}">
 					</div>
 				</div>
                 <div class="form-group row management-check {% if not form.management_check%}d-none{% endif %}">
 					<div class="col">
-						<label>Management Cost</label>
+						<label>Management Cost(Monthly in INR) </label>
                         <input class="form-control" name="management_cost" value="{{form.management_cost}}">
 					</div>
 				</div>

@@ -40,7 +40,7 @@ text-align: center;
 {% if user.is_staff %}
     <a href="{% url 'sensor_da_view' %}"><button  class="block">Crop Monitoring</button></a>
  {% endif %}
-
+<br>
 <a href="{% url 'crop_budget' %}"><button  class="block">Crop Planning</button></a>
 <br>
 <a href="{% url 'my_farm_view' %}"><button  class="block">My Farm</button></a>

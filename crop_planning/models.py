@@ -23,6 +23,7 @@ class CropBudget(models.Model):
     #Basic Checking
     seed_check = models.BooleanField(default=True)
     seedling_check = models.BooleanField(default=False)
+    prod_per_plant_av = models.BooleanField(default=True)
     mulch_check = models.BooleanField(default=True)
     alan_check = models.BooleanField(default=True)
     stake_check = models.BooleanField(default=True)
@@ -47,53 +48,53 @@ class CropBudget(models.Model):
     prod_per_acre_max = models.FloatField(default=0,help_text="in Kgs")
 
 
-    sell_price_min = models.FloatField(default=0)
-    sell_price_max = models.FloatField(default=0)
+    sell_price_min = models.FloatField(default=0, help_text="Rs. per Kg")
+    sell_price_max = models.FloatField(default=0, help_text="Rs. per Kg")
 
-    crop_duration = models.IntegerField(default=6,help_text="Duration in month")
+    crop_duration = models.IntegerField(default=6,help_text="Duration in months")
 
-    # Per Plant Cost
-    seed_cost = models.FloatField(default=0)
-    per_plant_cost = models.FloatField(default=0)
+    # Seed Cost Per Acre
+    seed_cost = models.FloatField(default=0, help_text="Seed Cost per Acre")
+    per_plant_cost = models.FloatField(default=0, help_text="Rs. per plant")
 
-    vermi_compost_cost = models.IntegerField(default=0)
-    plantation_cost = models.IntegerField(default=0)
-    fertilizer_bas_cost = models.IntegerField(default=0)
-    fertilizer_ws_cost = models.IntegerField(default=0)
-    pesticide_cost = models.IntegerField(default=0)
-    irrigation_cost = models.IntegerField(default=0)
+    vermi_compost_cost = models.IntegerField(default=0, help_text="Cost per Acre")
+    plantation_cost = models.IntegerField(default=0, help_text="Cost per Acre")
+    fertilizer_bas_cost = models.IntegerField(default=0, help_text="Basal Dose Fertilizer Cost per Acre")
+    fertilizer_ws_cost = models.IntegerField(default=0, help_text="Water Soluble Fertilizer Cost per Acre")
+    pesticide_cost = models.IntegerField(default=0,help_text="Cost per Acre")
+    irrigation_cost = models.IntegerField(default=0,help_text="Cost per Acre")
 
     #Additional Cost
-    marketing_and_harvesting_cost = models.IntegerField(default=0)
+    marketing_and_harvesting_cost = models.IntegerField(default=0, help_text="Cost for Crop Cycle")
 
     #Fixed Cost
     gobar_cost = models.IntegerField(default=0,help_text="Yearly Cost")
-    ploughing_bed_cost = models.IntegerField(default=0)
+    ploughing_bed_cost = models.IntegerField(default=0, help_text="Yearly Cost")
 
     #Mulching Cost
-    mulch_cost = models.IntegerField(default=0)
-    mulch_labour_cost = models.IntegerField(default=0)
-    weeding_cost = models.IntegerField(default=0)
+    mulch_cost = models.IntegerField(default=0, help_text="Yearly Cost")
+    mulch_labour_cost = models.IntegerField(default=0, help_text="Yearly Cost")
+    weeding_cost = models.IntegerField(default=0, help_text="Yearly Cost")
 
-    alan_cost = models.IntegerField(default=0)
-    wire_stake = models.IntegerField(default=0)
-    wire_thin_tant = models.IntegerField(default=0)
-    stake_labour_cost = models.IntegerField(default=0)
+    alan_cost = models.IntegerField(default=0, help_text="Yearly Cost")
+    wire_stake = models.IntegerField(default=0, help_text="Yearly Cost")
+    wire_thin_tant = models.IntegerField(default=0, help_text="Yearly Cost")
+    stake_labour_cost = models.IntegerField(default=0, help_text="Yearly Cost")
 
     # Crop Cover Cost
-    wire_cost = models.IntegerField(default=0)
-    wire_recov_duration = models.IntegerField(default=48,help_text="In Months")
-    crop_cover = models.IntegerField(default=0)
-    labour_crop_cover = models.IntegerField(default=0)
+    crop_cover = models.IntegerField(default=0, help_text="Yearly Cost for Crop Cover")
+    wire_cost = models.IntegerField(default=0, help_text="Cost for Crop Cover Structure Wire")
+    wire_recov_duration = models.IntegerField(default=48,help_text="Crop Cover Structure Wire Recovery period In Months")
+    labour_crop_cover = models.IntegerField(default=0, help_text="Yearly Cost")
 
 
-    land_lease_cost = models.IntegerField(default=0,help_text="Land lease per acre cost in inr per year")
+    land_lease_cost = models.IntegerField(default=0,help_text="Land lease per acre cost in INR per year")
 
-    plant_guarding_maintenance_cost = models.IntegerField(default=0)
+    plant_guarding_maintenance_cost = models.IntegerField(default=0, help_text="Monthly Cost in INR")
 
-    management_cost = models.IntegerField(default=0)
+    management_cost = models.IntegerField(default=0, help_text="Monthly Cost in INR")
 
-    miscell_cost = models.IntegerField(default=0)
+    miscell_cost = models.IntegerField(default=0, help_text="Cost in INR for crop cycle")
 
 
 
