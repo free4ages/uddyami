@@ -118,3 +118,6 @@ class MyFarmView(ListView):
 class SensorSuccess(TemplateView):
     template_name = 'farm_management/sensor_da-success.html'
 
+class CropDiseases(TemplateView):
+    template_name = 'farm_management/crop-diseases.html'
+

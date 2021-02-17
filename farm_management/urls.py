@@ -5,7 +5,7 @@ except ImportError:
     from django.urls import re_path as url
 
 from farm_management.views import FarmList,FarmCreate,FarmSuccess,LocationCreate,LocationSuccess,SensorDataCreate,SensorDataView,SensorSuccess,\
-MyFarmView
+MyFarmView,CropDiseases
 
 urlpatterns = [
 
@@ -44,5 +44,9 @@ urlpatterns = [
     url(r'^farm/location/sensor_da/success/$',
     view=SensorSuccess.as_view(),
     name='sensor_success'),
+
+     url(r'^farm/crop-diseases/$',
+    view=CropDiseases.as_view(),
+    name='crop_diseases'),
 
 ]

@@ -34,6 +34,9 @@ text-align: center;
 
 
 {% block content %}
+<a href="{% url 'crop_budget' %}"><button  class="block">Crop Planning</button></a>
+<br>
+<a href="{% url 'crop_diseases' %}"><button  class="block">Crop Diseases</button></a>
 <br>
 <a href="{% url 'farm_new' %}"><button class="block">Create New Farm</button></a>
 <br>
@@ -41,10 +44,10 @@ text-align: center;
     <a href="{% url 'sensor_da_view' %}"><button  class="block">Crop Monitoring</button></a>
  {% endif %}
 <br>
-<a href="{% url 'crop_budget' %}"><button  class="block">Crop Planning</button></a>
-<br>
 <a href="{% url 'my_farm_view' %}"><button  class="block">My Farm</button></a>
 <br>
+
+
 <h1 style="text-align:center">Farms Connected</h1>
 <section class="section2">
     <div class="container">
